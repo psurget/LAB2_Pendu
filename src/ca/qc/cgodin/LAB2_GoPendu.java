@@ -7,47 +7,54 @@
  */
 package ca.qc.cgodin;
 import javax.swing.JOptionPane;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class LAB2_GoPendu {
-    
     // VARIABLES DE CLASSES
-    static int[] tourJ = new int[NbJoueurs];
-    static String[] nom = new String[NbJoueurs];
+    static int[] tourJ;
+    static Joueur[] j;
+    static String[] nom, secret;
     static boolean gagne, nouveau;
-    static Joueur j1, j2;
-    static int NbJoueurs; 
+    static int nbJoueurs;
 
+    
     public static void main(String[] args) {
-	//variables
-	String[] secret = new String[NbJoueurs];
+	//Nb de joueurs
+	String tmp = JOptionPane.showInputDialog("À combien de joueurs voulez-vous jouer ?");
+	nbJoueurs = Integer.parseInt(tmp);
 	
-	// Inscription des joueurs
-	nom[NbJoueurs] = JOptionPane.showInputDialog("Joueur 1: Quel est votre nom ?");
-	secret[NbJoueurs] = JOptionPane.showInputDialog( nom[NbJoueurs] + ", entrez votre mot secret ?");
-	//  Création du Joueur 1 et de son Pendu
-	    if(nom[1]==""){
-		j1 = new Joueur();
-	    }else{
-		j1 = new Joueur(nom[NbJoueurs]);
-	    };
-	    int idJ1 = j1.getIdJoueur();
+	//variables	
+	secret = new String[nbJoueurs];
+	nom = new String[nbJoueurs];
 	
-	nom[NbJoueurs] = JOptionPane.showInputDialog("Joueur 2: Quel est votre nom ?");
-	secret[NbJoueurs] = JOptionPane.showInputDialog( nom[NbJoueurs] + ", entrez votre mot secret ?");
-	
+	for(int i=1; i< nbJoueurs; i++) {
+	    // Inscription des joueurs
+	    nom[i] = JOptionPane.showInputDialog("Joueur " + i + ": Quel est votre nom ?");
+	    secret[i] = JOptionPane.showInputDialog( nom[i] + ", entrez votre mot secret ?");
+	    //  Création du Joueur 1 et de son Pendu
+	    	if(nom[i]==""){
+	    	    j[i] = new Joueur();
+	    	}else{
+	    	    j[i] = new Joueur(nom[i]);
+	    	};
+	    	int idJ = j[i].getIdJoueur();
+	    	p[i] = new Pendu(idJ,secret[i]);
+		}
 	// Début DO-WHILE-1 Autre Partie
 	do {
-	// Création des 2 joueurs et des 2 pendus
+	    // Création des 2 joueurs et des 2 pendus
 	    
 	    int idJ2 = j2.getIdJoueur();	    
 	    //Pendu (Int idJoueur, String motSecret, String motTrouve)
-	    Pendu p1 = new Pendu(idJ1, secret[NbJoueurs], null);
+	    Pendu p1 = new Pendu(idJ1, secret[nbJoueurs], null);
 	    
 	    
-	    	j2 = new Joueur(nom[NbJoueurs]);
+	    	j2 = new Joueur(nom[nbJoueurs]);
 	    
-	    Pendu p2 = new Pendu(idJ2, secret[NbJoueurs], null);	    
+	    Pendu p2 = new Pendu(idJ2, secret[nbJoueurs], null);	    
 	    
 	// Tirage au sort
 	    int[] TabJoueurs = new int[]{ idJ1, idJ2 };
@@ -58,12 +65,15 @@ public class LAB2_GoPendu {
 	    JOptionPane.showMessageDialog( null, nomChoisi + " a été sélectionné pour commencer la partie." );
 	    	    
 	// RESET de l'affichage des lettres VUES
-	    j1.resetScore();
-	    j2.resetScore();
+	    Map<String,Joueur> j = new HashMap<>();
+	    for(int i=1; i<nbJoueurs; i++) {
+		j.put("j"+ i, resetScore());
+	     }
+
 	
 	// Début DO-WHILE-2 ( Gagnant? )
 	    int count=0;
-	    String[] test = new String[NbJoueurs];
+	    String[] test = new String[nbJoueurs];
 	    int tourJoueur;
 	    
 	    do {
@@ -90,18 +100,24 @@ public class LAB2_GoPendu {
 
     }
     
-    public void tousJoueurPendu(){
-	String[NbJoueurs] nom, secret;
-	for(int i=0; i < NbJoueurs; i++){
-	nom[i] = JOptionPane.showInputDialog("Joueur "+i+": Quel est votre nom ?");
-	secret[i] = JOptionPane.showInputDialog( nom[i] + ", entrez votre mot secret ?");
-	//  Création du Joueur et de son Pendu
+    public void multiJoueursPendu(int nbJoueurs, String[] nom, String[] secret){
+	int[] idJrs = new int[nbJoueurs];
+	Map<String,Joueur> j = new HashMap<>();
+	Map<String,Pendu> p = new HashMap<>();
+	Map<String,Pendu> idJoueurs = new HashMap<>();
+	
+	for(int i=0; i < nbJoueurs; i++){
+	    nom[i] = JOptionPane.showInputDialog("Joueur "+i+": Quel est votre nom ?");
+	    secret[i] = JOptionPane.showInputDialog( nom[i] + ", entrez votre mot secret ?");
+	   
+	    //  Création des Joueurs et de leur Pendu
 	    if(nom[i]==""){
-		j1 = new Joueur();
+		j.put( "j" + i, new Joueur());
+		idJrs[i]= idJoueurs.put( "j"+i, Pendu.getIdPendu( nom[i]) );
 	    }else{
-		j1 = new Joueur(nom[i]);
+		j.put( "j" + i, new Joueur(nom[i]));
 	    };
-	    int idJ1 = j1.getIdJoueur();
+	    
 	}
     }
     

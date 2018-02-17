@@ -13,14 +13,14 @@ public class Joueur {
     private String nom;
     private int score=0;
     
-    public Joueur(String nom) {
+    public Joueur (String nom) {
 	this.idJoueur = ++count;
 	this.nom = nom;
 	this.score = 0;
     }
     
     public Joueur(){
-	this("Individus");
+	this ("Individus");
     }
        
     public String toString(){
@@ -41,12 +41,13 @@ public class Joueur {
     }
     
     //SETTERS
-    public void setNom(String nom){
+    public void setNom (String nom){
 	this.nom=nom;
     }
     
-    public void resetScore() {
+    public void resetScore () {
 	this.score=0;
     }
+    
     
 }

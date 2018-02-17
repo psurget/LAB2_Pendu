@@ -15,9 +15,8 @@ public class Pendu {
     static String lettresTest;
     
     // CONSTRUCTOR
-    public Pendu(int idJoueur, String motSecret, String motTrouve) {
+    public Pendu(int idJoueur, String motSecret) {
 	this.idJoueur = idJoueur;
-	this.motSecret = motSecret;
 	for(int i=0; i< motSecret.length(); i++){
 	    this.motTrouve += "_";
 	}
@@ -46,6 +45,11 @@ public class Pendu {
   }
   
   // GETTTERS
+  
+  public int getIdPendu(String nom) {
+      return idJoueur;
+  }
+  
   public String getMotSecret(){
       return motSecret;
   }
