@@ -53,7 +53,7 @@ public class Pendu {
   
   // GETTTERS
   
-  public int getIdPendu(String nom) {
+  public int getIdJoueur() {
       return idJoueur;
   }
   

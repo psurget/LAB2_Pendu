@@ -5,14 +5,17 @@
 */
 
 package ca.qc.cgodin;
+
+import javax.swing.JOptionPane;
+
+
 public class Test_Classes {
 
     // création d'un joueur
-    public void main(String[] args) {
-	// TODO Auto-generated method stub
-	GoPendu.creerJoueurs();
-	int id = Pendu.getIdPendu( GoPendu.nom[1] );
-	System.out.println(id);
+    public static void main(String[] args) {
+
+		
     }
+    
 
 }

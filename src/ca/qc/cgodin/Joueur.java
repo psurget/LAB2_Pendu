@@ -24,8 +24,7 @@ public class Joueur {
     
     public Joueur(){
 	this ("Individus");
-    }
-    
+    }   
        
     public String toString(){
 	return nom + ": " + score;
@@ -40,12 +39,9 @@ public class Joueur {
    	return nom;
     }
     
-    public String getNom(int idJoueur){
-   	return nom;
-    }
     
-    public Integer getScore(){
-   	return score;
+    public String getScore(){
+   	return nom + ": " + score;
     }
     
     //SETTERS
