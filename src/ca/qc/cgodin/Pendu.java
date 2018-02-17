@@ -23,6 +23,11 @@ public class Pendu {
 	}
     }
     
+    public Pendu(int idJoueur) {
+	this.idJoueur = idJoueur;
+	this.motSecret = motSecret;	
+    }
+    
    // METHODS 
   public void essai(String lettre){
     setLettresTest(lettre);
