@@ -10,24 +10,31 @@ package ca.qc.cgodin;
 public class Pendu {
     // VARIABLES
     private int idJoueur;
+    private String nom;
     private String motSecret;
     private String motTrouve;
     static String lettresTest;
     
     // CONSTRUCTOR
-    public Pendu(int idJoueur, String motSecret) {
+    public Pendu(int idJoueur, String nom, String motSecret) {
 	this.idJoueur = idJoueur;
+	this.nom = nom;
 	for(int i=0; i< motSecret.length(); i++){
 	    this.motTrouve += "_";
 	}
     }
     
+    public Pendu(int idJoueur, String motSecret) {
+	for(int i=0; i< motSecret.length(); i++){
+	    this.motTrouve += "_";
+	}
+    }
+    
+    
    // METHODS 
   public void essai(String lettre){
-    setLettresTest(lettre);
-      for (int i=0; i< motSecret.length(); i++) {
-	  this.motTrouve = this.motTrouve.replaceAll("_",lettre);
-      }
+      setLettresTest(lettre);
+      this.motTrouve = this.motTrouve.replaceAll("_",lettre);
   }
   
   public String getStatutMotTrouve(){
@@ -62,11 +69,19 @@ public class Pendu {
       return lettresTest;
   }
   
+  public String getNomPendu() {
+      return nom;
+  }
   
   //SETTERS
   public void ResetALL(){
       motTrouve = null;
       motSecret = null;
+  }
+  
+  public void setNom(int idJoueur, String nom) {
+      idJoueur = this.idJoueur;
+      nom = this.nom;
   }
   
   public void resetMotTrouve(){

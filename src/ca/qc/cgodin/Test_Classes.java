@@ -8,10 +8,11 @@ package ca.qc.cgodin;
 public class Test_Classes {
 
     // création d'un joueur
-    public static void main(String[] args) {
+    public void main(String[] args) {
 	// TODO Auto-generated method stub
-	Joueur j1=new Joueur("");
-	System.out.println(j1);
+	GoPendu.creerJoueurs();
+	int id = Pendu.getIdPendu( GoPendu.nom[1] );
+	System.out.println(id);
     }
 
 }

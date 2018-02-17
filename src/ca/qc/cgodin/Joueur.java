@@ -8,12 +8,15 @@
 package ca.qc.cgodin;
 
 public class Joueur {
+    
+    // VARIABLES ET CONSTANTES DE CLASSE
     private static int count=0;
     private int idJoueur;
     private String nom;
     private int score=0;
     
-    public Joueur (String nom) {
+    // CONSTRUCTEUR
+    public Joueur(String nom) {
 	this.idJoueur = ++count;
 	this.nom = nom;
 	this.score = 0;
@@ -22,6 +25,7 @@ public class Joueur {
     public Joueur(){
 	this ("Individus");
     }
+    
        
     public String toString(){
 	return nom + ": " + score;
@@ -32,7 +36,11 @@ public class Joueur {
 	return idJoueur;
     }
     
-    public String getNomJoueur(){
+    public String getNom(){
+   	return nom;
+    }
+    
+    public String getNom(int idJoueur){
    	return nom;
     }
     
@@ -41,11 +49,11 @@ public class Joueur {
     }
     
     //SETTERS
-    public void setNom (String nom){
+    public void setNom(String nom){
 	this.nom=nom;
     }
     
-    public void resetScore () {
+    public void resetScore() {
 	this.score=0;
     }
     
