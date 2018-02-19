@@ -7,29 +7,28 @@
  */
 package ca.qc.cgodin;
 
-public class Pendu {
+public class Pendu extends Joueur {
+    
     // VARIABLES
-    private int idJoueur;
-    private String nom;
     private String motSecret;
     private String motTrouve;
     static String lettresTest;
     
     // CONSTRUCTOR
-    public Pendu(int idJoueur, String nom, String motSecret) {
-	this.idJoueur = idJoueur;
-	this.nom = nom;
+    public Pendu(String nom, String motSecret) {
+	super(nom);
 	for(int i=0; i< motSecret.length(); i++){
 	    this.motTrouve += "_";
 	}
     }
     
-    public Pendu(int idJoueur, String motSecret) {
+    public Pendu(String motSecret) {
+	super();
 	for(int i=0; i< motSecret.length(); i++){
 	    this.motTrouve += "_";
 	}
     }
-    
+     
     
    // METHODS 
   public void essai(String lettre){
@@ -43,18 +42,17 @@ public class Pendu {
   }
   
   public Boolean EstTrouve(){
-      Boolean trouve = motSecret.equals(motTrouve);
-      return trouve;
+      return motSecret.equals(motTrouve);
   }
   
   public String toString(){
-      return idJoueur + ", " + motSecret + " " + motTrouve + lettresTest;
+      return super.getIdJoueur() + ", " + motSecret + " " + motTrouve + lettresTest;
   }
   
   // GETTTERS
   
-  public int getIdJoueur() {
-      return idJoueur;
+  public Integer getIdJoueur() {
+      return super.getIdJoueur();
   }
   
   public String getMotSecret(){
@@ -70,7 +68,7 @@ public class Pendu {
   }
   
   public String getNomPendu() {
-      return nom;
+      return super.getNomComplet();
   }
   
   //SETTERS
@@ -79,16 +77,12 @@ public class Pendu {
       motSecret = null;
   }
   
-  public void setNom(int idJoueur, String nom) {
-      idJoueur = this.idJoueur;
-      nom = this.nom;
-  }
   
   public void resetMotTrouve(){
       motTrouve = null;
   }
   
-  public void setLettresTest(String lettre){
+  public static void setLettresTest(String lettre){
       lettresTest += lettre;
   }
   
