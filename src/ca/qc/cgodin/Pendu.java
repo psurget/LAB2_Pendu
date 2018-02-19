@@ -7,33 +7,33 @@
  */
 package ca.qc.cgodin;
 
-public class Pendu {
+public class Pendu extends Joueur {
+    
     // VARIABLES
-    private int idJoueur;
     private String motSecret;
     private String motTrouve;
     static String lettresTest;
     
     // CONSTRUCTOR
-    public Pendu(int idJoueur, String motSecret, String motTrouve) {
-	this.idJoueur = idJoueur;
-	this.motSecret = motSecret;
+    public Pendu(String nom, String motSecret) {
+	super(nom);
 	for(int i=0; i< motSecret.length(); i++){
 	    this.motTrouve += "_";
 	}
     }
     
-    public Pendu(int idJoueur) {
-	this.idJoueur = idJoueur;
-	this.motSecret = motSecret;	
+    public Pendu(String motSecret) {
+	super();
+	for(int i=0; i< motSecret.length(); i++){
+	    this.motTrouve += "_";
+	}
     }
+     
     
    // METHODS 
   public void essai(String lettre){
-    setLettresTest(lettre);
-      for (int i=0; i< motSecret.length(); i++) {
-	  this.motTrouve = this.motTrouve.replaceAll("_",lettre);
-      }
+      setLettresTest(lettre);
+      this.motTrouve = this.motTrouve.replaceAll("_",lettre);
   }
   
   public String getStatutMotTrouve(){
@@ -42,15 +42,19 @@ public class Pendu {
   }
   
   public Boolean EstTrouve(){
-      Boolean trouve = motSecret.equals(motTrouve);
-      return trouve;
+      return motSecret.equals(motTrouve);
   }
   
   public String toString(){
-      return idJoueur + ", " + motSecret + " " + motTrouve + lettresTest;
+      return super.getIdJoueur() + ", " + motSecret + " " + motTrouve + lettresTest;
   }
   
   // GETTTERS
+  
+  public Integer getIdJoueur() {
+      return super.getIdJoueur();
+  }
+  
   public String getMotSecret(){
       return motSecret;
   }
@@ -63,6 +67,9 @@ public class Pendu {
       return lettresTest;
   }
   
+  public String getNomPendu() {
+      return super.getNomComplet();
+  }
   
   //SETTERS
   public void ResetALL(){
@@ -70,11 +77,12 @@ public class Pendu {
       motSecret = null;
   }
   
+  
   public void resetMotTrouve(){
       motTrouve = null;
   }
   
-  public void setLettresTest(String lettre){
+  public static void setLettresTest(String lettre){
       lettresTest += lettre;
   }
   
